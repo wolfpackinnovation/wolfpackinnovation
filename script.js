@@ -269,9 +269,9 @@ window.downloadSmartApp = function(e, androidUrl, iosUrl, defaultToAndroid) {
   const isIOS = /iphone|ipad|ipod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
   if (isAndroid && androidUrl) {
-    window.location.replace(androidUrl);
+    window.location.href = androidUrl;
   } else if (isIOS && iosUrl) {
-    window.location.replace(iosUrl);
+    window.location.href = iosUrl;
   } else {
     // Fallback para PC ou outro sistema
     if (defaultToAndroid && androidUrl) {
