@@ -258,3 +258,50 @@ window.handleSubmit = async function(e) {
     }, 4000);
   }
 };
+
+window.downloadSmartApp = function(e, androidUrl, iosUrl, defaultToAndroid) {
+  e.preventDefault();
+  
+  const userAgent = navigator.userAgent.toLowerCase();
+  
+  // Usamos includes e regex básicos
+  const isAndroid = userAgent.includes("android");
+  const isIOS = /iphone|ipad|ipod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isAndroid && androidUrl) {
+    window.location.replace(androidUrl);
+  } else if (isIOS && iosUrl) {
+    window.location.replace(iosUrl);
+  } else {
+    // Fallback para PC ou outro sistema
+    if (defaultToAndroid && androidUrl) {
+      window.open(androidUrl, '_blank');
+    } else if (iosUrl) {
+      window.open(iosUrl, '_blank');
+    } else {
+      window.open(androidUrl, '_blank');
+    }
+  }
+};
+
+window.downloadFinvest = function(e) {
+  const androidUrl = 'https://play.google.com/store/apps/details?id=com.wolfpackinnovation.finvest&pcampaignid=web_share';
+  const iosUrl = 'https://apps.apple.com/br/app/finvest-finance/id6760830758';
+  // Desktop Windows vai pro Android, Mac vai pro iOS
+  const defaultToAndroid = /windows/.test(navigator.userAgent.toLowerCase());
+  window.downloadSmartApp(e, androidUrl, iosUrl, defaultToAndroid);
+};
+
+window.downloadPedifacil = function(e) {
+  const androidUrl = 'https://play.google.com/store/apps/details?id=com.pedifacil.deliverycliente';
+  const iosUrl = 'https://apps.apple.com/us/app/pedifacil/id6751516229';
+  const defaultToAndroid = /windows/.test(navigator.userAgent.toLowerCase());
+  window.downloadSmartApp(e, androidUrl, iosUrl, defaultToAndroid);
+};
+
+window.downloadPedifacilParceiros = function(e) {
+  const androidUrl = 'https://play.google.com/store/apps/details?id=com.pedifacil.deliveryparceiros&pcampaignid=web_share';
+  const iosUrl = 'https://apps.apple.com/br/app/pedifacil-parceiros/id6751601334?l=en-GB';
+  const defaultToAndroid = /windows/.test(navigator.userAgent.toLowerCase());
+  window.downloadSmartApp(e, androidUrl, iosUrl, defaultToAndroid);
+};

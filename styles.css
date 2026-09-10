@@ -730,6 +730,8 @@ ul {
   justify-content: space-between;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .social-link {
@@ -738,6 +740,13 @@ ul {
   gap: 0.5rem;
   color: var(--text);
   transition: color 0.3s;
+}
+
+@media (max-width: 480px) {
+  .app-links .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .social-link:hover {
